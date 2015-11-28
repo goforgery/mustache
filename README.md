@@ -8,20 +8,28 @@ Mustache template renderer for [Forgery2](https://github.com/goforgery/forgery2)
 
 ## Use
 
-    package main
+By default template files are found in a folder named `./views` in the directory where __Forgery2__ is started.
 
-    import(
-        "github.com/goforgery/forgery2"
-        "github.com/goforgery/mustache"
-    )
+```javascript
+package main
 
-    func init() {
-        app := f.CreateApp()
-        app.Engine(".html", mustache.Create())
-        app.Get("/", func(req *f.Request, res *f.Response, next func()) {
-            res.Render("index.html", map[string]string{"title": "Mu"})
-        })
-        app.Listen(3000)
-    }
+import(
+    "github.com/goforgery/forgery2"
+    "github.com/goforgery/mustache"
+)
+
+func main() {
+    app := f.CreateApp()
+    app.Engine(".html", mustache.Create())
+    app.Get("/", func(req *f.Request, res *f.Response, next func()) {
+        res.Render("index.html", map[string]string{"title": "Mustache"})
+    })
+    app.Listen(3000)
+}
+```
 
 The above code will look for the file `./views/index.html`.
+
+## Test
+
+    go test
