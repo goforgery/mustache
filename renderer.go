@@ -5,12 +5,16 @@ import (
 )
 
 type Mustache struct {
-	cache map[string]*mustache.Template
+	cache    map[string]*mustache.Template
+	useCache bool
 }
 
-func Create() *Mustache {
+func Create(useCache ...bool) *Mustache {
 	this := &Mustache{}
 	this.cache = map[string]*mustache.Template{}
+	if len(useCache) == 1 {
+		this.useCache = useCache[0]
+	}
 	return this
 }
 
@@ -21,8 +25,15 @@ func (this *Mustache) Render(f string, o ...interface{}) (string, error) {
 		if err != nil {
 			return "", err
 		}
-		this.cache[f] = tmpl
-		t = this.cache[f]
+		if this.useCache {
+			this.cache[f] = tmpl
+		}
+		t = tmpl
 	}
 	return t.Render(o...), nil
+}
+
+// Clean the cache.
+func (this *Mustache) Clean() {
+	this.cache = map[string]*mustache.Template{}
 }

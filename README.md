@@ -30,6 +30,18 @@ func main() {
 
 The above code will look for the file `./views/index.html`.
 
+For performance the parsed Mustache template can be cached in memory by passing `true` as the first argument to `Create()`. 
+
+```javascript
+app.Engine(".html", mustache.Create(true))
+```
+
+The cache can be cleaned by calling `Clean()` at any time.
+
+```javascript
+mustache.Clean(true)
+```
+
 ## Test
 
     go test
