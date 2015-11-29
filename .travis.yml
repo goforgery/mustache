@@ -4,5 +4,6 @@ go:
     - 1.5
     - tip
 install:
+	- go get github.com/goforgery/forgery2
     - go get github.com/hoisie/mustache
     - go get github.com/ricallinson/simplebdd
