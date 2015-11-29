@@ -1,5 +1,7 @@
 # mustache
 
+[![Build Status](https://secure.travis-ci.org/goforgery/mustache.png?branch=master)](http://travis-ci.org/goforgery/mustache)
+
 Mustache template renderer for [Forgery2](https://github.com/goforgery/forgery2).
 
 ## Install
